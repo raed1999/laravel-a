@@ -2,7 +2,12 @@
 
 @section('content')
 
-    <p>Admin</p>
+    <div class="container mt-3">
 
-    This is home
+        <p>Admin</p>
+
+        This is home
+
+    </div>
+
 @endsection

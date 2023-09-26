@@ -1,18 +1,20 @@
 @extends('layouts.app', ['title' => 'Profile'])
 
 @section('content')
-    This is profile
+    <div class="container mt-3">
 
 
+        <p>Clerk</p>
 
-    <div class="mt-3">
-        {{ $id }}
-        {{ $dob }}
+        This is profile
+
+        <div class="mt-3">
+            {{ $id }}
+            {{ $dob }}
+        </div>
+
     </div>
 
-    <div class="bg-primary">
-        Hello!
-    </div>
+
 
 @endsection
-

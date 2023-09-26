@@ -2,5 +2,11 @@
 
 
 @section('content')
-    This is welcome
+
+    <div class="container mt-3">
+
+        This is welcome
+
+    </div>
+
 @endsection

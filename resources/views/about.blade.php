@@ -1,6 +1,9 @@
 @extends('layouts.app', ['title' => 'About'])
 
 @section('content')
-    This is about
-@endsection
+    <div class="container mt-3">
 
+        This is about
+
+    </div>
+@endsection

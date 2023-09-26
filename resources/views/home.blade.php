@@ -2,5 +2,10 @@
 
 @section('content')
 
-    This is home
+    <div class="container mt-3">
+
+        This is home
+
+    </div>
+
 @endsection
