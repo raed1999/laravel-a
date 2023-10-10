@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 /* Guest */
 // Routes implementing controllers
-Route::get('/welcome', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -29,7 +29,9 @@ Route::prefix('/admin')
     ->name('admin.')
     ->group(function () {
         Route::get('/home', [AdminHomeController::class, 'index'])->name('home');
+
         Route::resource('/profile',AdminProfileController::class);
+
     });
 
 /* Clerk */

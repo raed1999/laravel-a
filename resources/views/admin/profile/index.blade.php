@@ -35,11 +35,6 @@
                     </tr>
                 </tbody>
             </table>
-
-
         </div>
-
-
-
     </div>
 @endsection

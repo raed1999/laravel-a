@@ -35,15 +35,13 @@ class AdminProfileController extends Controller
 
         /* !You may add validation */
 
-        $data = $request->all();
+       /*  $data = $request->all(); */
 
         $name = $request->input('name');
         $studentIDNumber = $request->input('studentIDNumber');
         $address = $request->input('address');
 
-        dd($name, $studentIDNumber);
-
-
+     /*   dd($name, $studentIDNumber ); */
 
     }
 
@@ -53,6 +51,12 @@ class AdminProfileController extends Controller
     public function show(string $id)
     {
         return view('admin.profile.show');
+
+
+
+
+
+        /* asd */
     }
 
     /**
@@ -74,7 +78,7 @@ class AdminProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+        public function destroy(string $id)
     {
         //
     }
