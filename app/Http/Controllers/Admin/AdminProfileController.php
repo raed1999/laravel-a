@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+
+use function Laravel\Prompts\password;
 
 class AdminProfileController extends Controller
 {
@@ -12,7 +15,9 @@ class AdminProfileController extends Controller
      */
     public function index()
     {
-       return view('admin.profile.index');
+        $users = User::all();
+
+       return view('admin.profile.index',compact('users'));
     }
 
     /**
@@ -38,10 +43,29 @@ class AdminProfileController extends Controller
        /*  $data = $request->all(); */
 
         $name = $request->input('name');
-        $studentIDNumber = $request->input('studentIDNumber');
-        $address = $request->input('address');
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-     /*   dd($name, $studentIDNumber ); */
+
+        /* Old Method */
+        /* $user = new User();
+
+        $user->name = $name;
+        $user->user_types_id = 1;
+        $user->email = $email;
+        $user->password = $password;
+
+        $user->save(); */
+
+        /* Mass assignment */
+        User::create([
+            'name' => $name,
+            'user_types_id' => 1,
+            'email' => $email,
+            'password' => $password,
+        ]);
+
+        return redirect(route('admin.profile.index'));
 
     }
 

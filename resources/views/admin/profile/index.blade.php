@@ -16,16 +16,17 @@
                 <thead class="text-center">
                     <th>No</th>
                     <th>Name</th>
-                    <th>Student ID</th>
-                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Password</th>
                     <th>Action</th>
                 </thead>
                 <tbody>
+                    @foreach ($users as $user)
                     <tr>
-                        <td class="text-center">1</td>
-                        <td>John</td>
-                        <td>2019-123213</td>
-                        <td>Diyan lang</td>
+                        <td class="text-center">{{ $loop->iteration }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->password }}</td>
                         <td class="text-center">
                             {{-- Route to view --}}
                             <a href="" class="btn btn-sm btn-primary">View</a>
@@ -33,6 +34,8 @@
                             <a href="{{ route('admin.profile.edit',12) }}" class="btn btn-sm btn-warning">Edit</a>
                         </td>
                     </tr>
+
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -17,9 +17,9 @@
 
                 <input class="form-control mb-3" type="text" name="name" placeholder="Name" id="">
 
-                <input class="form-control mb-3" type="text" name="studentIDNumber" placeholder="Student ID Number"
-                    id="">
-                <input class="form-control mb-3" type="text" name="address" placeholder="Address" id="">
+                <input class="form-control mb-3" type="text" name="email" placeholder="Email" id="">
+
+                <input class="form-control mb-3" type="text" name="password" placeholder="Password" id="">
 
                 <button class="btn btn-primary" type="submit">Save</button>
 
