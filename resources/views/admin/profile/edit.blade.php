@@ -12,12 +12,11 @@
 
         <div class="row bg-light p-3">
 
-            <form action="" method="post">
+            <form action="{{ route('admin.profile.update',$user->id) }}" method="post">
                 @csrf
-
-                <input class="form-control mb-3" type="text" name="" placeholder="Name" id="">
-                <input class="form-control mb-3" type="text" name="" placeholder="Student ID Number" id="">
-                <input class="form-control mb-3" type="text" name="" placeholder="Address" id="">
+                @method('PATCH')
+                <input class="form-control mb-3" type="text" name="name" value="{{ $user->name }}" placeholder="Name" id="">
+                <input class="form-control mb-3" type="text" name="email" value="{{ $user->email }}" placeholder="Email" id="">
                 <button class="btn btn-primary" type="submit">Save</button>
             </form>
 

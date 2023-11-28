@@ -15,11 +15,22 @@
             <form action="{{ route('admin.profile.store') }}" method="post">
                 @csrf
 
-                <input class="form-control mb-3" type="text" name="name" placeholder="Name" id="">
+                <input class="form-control mb-3" type="text" value="{{ old('name') }}" name="name" placeholder="Name" id="">
+                @error('name')
+                    <div class="alert alert-danger p-1">{{ $message }}</div>
+                @enderror
 
-                <input class="form-control mb-3" type="text" name="email" placeholder="Email" id="">
+                <input class="form-control mb-3" type="text" value="{{ old('email') }}" name="email" placeholder="Email" id="">
+                @error('email')
+                    <div class="alert alert-danger p-1">{{ $message }}</div>
+                @enderror
 
-                <input class="form-control mb-3" type="text" name="password" placeholder="Password" id="">
+
+                <input class="form-control mb-3" type="text" value="{{ old('password') }}" name="password" placeholder="Password" id="">
+                @error('password')
+                    <div class="alert alert-danger p-1">{{ $message }}</div>
+                @enderror
+
 
                 <button class="btn btn-primary" type="submit">Save</button>
 

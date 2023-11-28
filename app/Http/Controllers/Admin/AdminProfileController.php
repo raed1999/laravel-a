@@ -15,9 +15,11 @@ class AdminProfileController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(5);
 
-       return view('admin.profile.index',compact('users'));
+       return view('admin.profile.index',[
+        'users' => $users,
+       ]);
     }
 
     /**
@@ -36,19 +38,19 @@ class AdminProfileController extends Controller
 
         /* You may add validation */
 
-        // code here
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+        ]);
 
-        /* !You may add validation */
-
-       /*  $data = $request->all(); */
-
-        $name = $request->input('name');
-        $email = $request->input('email');
-        $password = $request->input('password');
+        $name = $validated['name'];
+        $email = $validated['email'];
+        $password = $validated['password'];
 
 
         /* Old Method */
-        /* $user = new User();
+/*         $user = new User();
 
         $user->name = $name;
         $user->user_types_id = 1;
@@ -75,12 +77,6 @@ class AdminProfileController extends Controller
     public function show(string $id)
     {
         return view('admin.profile.show');
-
-
-
-
-
-        /* asd */
     }
 
     /**
@@ -88,7 +84,12 @@ class AdminProfileController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.profile.edit');
+        /* First option */
+       $user = User::findOrFail($id);
+
+        return view('admin.profile.edit', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -96,7 +97,16 @@ class AdminProfileController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        /* Validation */
+        $user = User::findOrFail($id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        $user->save();
+
+        return redirect(route('admin.profile.index'));
     }
 
     /**

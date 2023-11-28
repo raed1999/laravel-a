@@ -17,7 +17,6 @@
                     <th>No</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Action</th>
                 </thead>
                 <tbody>
@@ -26,16 +25,16 @@
                         <td class="text-center">{{ $loop->iteration }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->password }}</td>
                         <td class="text-center">
-                            {{-- Route to view --}}
                             <a href="" class="btn btn-sm btn-primary">View</a>
-                            {{-- 12 is temporary only --}}
-                            <a href="{{ route('admin.profile.edit',12) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="{{ route('admin.profile.edit',$user->id) }}" class="btn btn-sm btn-warning">Edit</a>
                         </td>
                     </tr>
-
                     @endforeach
+
+                    {{ $users->links() }}
+
+
                 </tbody>
             </table>
         </div>
