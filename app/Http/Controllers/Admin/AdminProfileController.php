@@ -15,11 +15,11 @@ class AdminProfileController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(5);
+        $users = User::all();
 
-       return view('admin.profile.index',[
-        'users' => $users,
-       ]);
+        return view('admin.profile.index',[
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -40,35 +40,23 @@ class AdminProfileController extends Controller
 
         $validated = $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|unique:users,email',
             'password' => 'required|min:8',
         ]);
 
-        $name = $validated['name'];
-        $email = $validated['email'];
-        $password = $validated['password'];
-
-
         /* Old Method */
-/*         $user = new User();
+        $user = new User();
 
-        $user->name = $name;
+        $user->name = $validated['name'];
         $user->user_types_id = 1;
-        $user->email = $email;
-        $user->password = $password;
+        $user->email = $validated['email'];
+        $user->password = $validated['password'];
 
-        $user->save(); */
+        $user->save();
 
         /* Mass assignment */
-        User::create([
-            'name' => $name,
-            'user_types_id' => 1,
-            'email' => $email,
-            'password' => $password,
-        ]);
 
         return redirect(route('admin.profile.index'));
-
     }
 
     /**
@@ -84,12 +72,12 @@ class AdminProfileController extends Controller
      */
     public function edit(string $id)
     {
-        /* First option */
-       $user = User::findOrFail($id);
 
-        return view('admin.profile.edit', [
-            'user' => $user,
-        ]);
+        /* Locate | Find data using ID */
+
+        $user = User::findOrFail($id);
+
+        return view('admin.profile.edit', compact('user'));
     }
 
     /**
@@ -99,12 +87,15 @@ class AdminProfileController extends Controller
     {
 
         /* Validation */
+
+
         $user = User::findOrFail($id);
 
-        $user->name = $request->name;
-        $user->email = $request->email;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
 
         $user->save();
+
 
         return redirect(route('admin.profile.index'));
     }
@@ -112,7 +103,7 @@ class AdminProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-        public function destroy(string $id)
+    public function destroy(string $id)
     {
         //
     }

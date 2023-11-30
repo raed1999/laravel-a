@@ -12,6 +12,7 @@
 
         <div class="row bg-light p-3">
 
+
             <table class="table table-bordered">
                 <thead class="text-center">
                     <th>No</th>
@@ -19,20 +20,24 @@
                     <th>Email</th>
                     <th>Action</th>
                 </thead>
+
+                {{-- {{ $users->firstItem() + $loop->index }} --}}
+
                 <tbody>
+
                     @foreach ($users as $user)
-                    <tr>
-                        <td class="text-center">{{ $users->firstItem() + $loop->index }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td class="text-center">
-                            <a href="" class="btn btn-sm btn-primary">View</a>
-                            <a href="{{ route('admin.profile.edit',$user->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="text-center">{{ $loop->iteration }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td class="text-center">
+                                <a href="" class="btn btn-sm btn-primary">View</a>
+                                <a href="{{ route('admin.profile.edit', $user->id) }}"
+                                    class="btn btn-sm btn-warning">Edit</a>
+                            </td>
+                        </tr>
                     @endforeach
 
-                    {{ $users->links() }}
 
 
                 </tbody>
